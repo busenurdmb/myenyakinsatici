@@ -1,0 +1,26 @@
+<!-- <div class="card">
+  <div class="card-header text-bg-primary">Kategoriler</div> -->
+<ul class="list-group">
+  <li
+    (click)="setCurrentCategory(category)"
+    routerLink="/products/category/{{ category.categoryID }}"
+    *ngFor="let category of categories"
+    [class]="getCurrentCategoryClass(category)"
+  >
+    {{ category.categoryName }}
+  </li>
+</ul>
+<!-- <table class="table active">
+    <tbody>
+      <tr
+        (click)="setCurrentCategory(category)"
+       
+        *ngFor="let category of categories"
+      >
+        <td>{{ category.categoryName }}</td>
+      </tr>
+    </tbody>
+  </table> -->
+<!-- </div> -->
+
+<h5 *ngIf="currentCategory">{{ currentCategory.categoryName }} seçtiniz</h5>

@@ -1,0 +1,66 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary text-center"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <th>adı</th>
+    <th>açıklama</th>
+    <th>stok</th>
+    <th>fiyat</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products" class="table">
+      <td>{{ product.name }}</td>
+      <!-- <td>{{ product.userId }}</td>
+        <td>{{ product.productId }}</td> -->
+      <td>{{ product.description }}</td>
+      <td>{{ product.unitsInStock }}</td>
+      <td>{{ product.unitPrice }}</td>
+      <!-- <td>{{ product.categoryID }}</td>
+        <td>{{ product.imageUrl }}</td> -->
+    </tr>
+  </tbody>
+</table>
+
+<!-- <div *ngIf="dataLoaded == false" class="lds-ellipsis">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+<div
+  class="row row-cols-1 row-cols-md-2 g-4"
+  style="margin-top: 10px; margin-bottom: 10px"
+>
+  <div class="col" *ngFor="let product of products">
+    <div class="card">
+      <img
+        style="height: 330px"
+        [src]="getCarImage(car)"
+        class="card-img-top"
+        alt="Hollywood Sign on The Hill"
+      /> 
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+      </div>
+      <div
+        class="card-footer d-flex justify-content-between align-items-center"
+      >
+        <small class="fw-bold text-start">{{ product.unitPrice }} TL / </small>
+        <a
+          routerLink="/cars/{{ product.productId }}"
+          class="buton float-end text-center"
+          >Detaylı Görüntüle</a
+        >
+      </div>
+    </div>
+  </div>
+</div> -->
