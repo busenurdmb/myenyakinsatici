@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductComponent {
   products: Product[] = [];
-  dataLoaded: boolean = false;
+  dataLoaded = false;
 
   constructor(
     private productService: ProductService,
@@ -34,6 +34,7 @@ export class ProductComponent {
       //senkron hale getiri burayı method dışına yapsak işe yaramaz
     });
   }
+
   getProductsByCatgeory(categoryid: number) {
     this.productService
       .getProductsbycategory(categoryid)

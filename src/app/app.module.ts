@@ -1,16 +1,16 @@
-// app.module.ts
-
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient } from '@angular/common/http'; // HttpClientModule ekleyin
-// import { provideHttpClient } from '@angular/localize';  // Bu satırı kaldırın
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './components/product/product.component';
+
 import { CategoryComponent } from './components/category/category.component';
 import { NaviComponent } from './components/navi/navi.component';
-
+import { ProductComponent } from './components/product/product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,10 +18,8 @@ import { NaviComponent } from './components/navi/navi.component';
     CategoryComponent,
     NaviComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule], // HttpClientModule ekleyin
-  providers: [
-    // provideHttpClient({ useFetch: true }).withFetch(),  // Bu satırı kaldırın
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
