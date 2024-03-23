@@ -11,15 +11,15 @@ import { CategoryService } from '../../services/category.service';
 })
 export class CategoryComponent {
   categories: Category[] = [];
-  currentCategory: Category;
+  currentCategory: Category | null;
 
   constructor(private categoryservice: CategoryService) {}
 
   ngOnInit(): void {
-    this.getCategorys();
+    this.getCategories();
   }
 
-  getCategorys() {
+  getCategories() {
     this.categoryservice.getCategorys().subscribe((response) => {
       this.categories = response.data;
     });
@@ -42,5 +42,9 @@ export class CategoryComponent {
     } else {
       return 'list-group-item';
     }
+  }
+
+  clearCurrentCategory() {
+    this.currentCategory = null;
   }
 }

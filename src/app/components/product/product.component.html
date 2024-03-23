@@ -5,11 +5,28 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
+<div class="mb-3">
+  <label class="form-label" for="filterText">ürün ara</label>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="arama yapınız"
+  />
+</div>
+<div *ngIf="filterText" class="alert alert-primary">
+  {{ filterText }} aradınız
+</div>
+
 <div class="card">
   <div class="card-header">ürünler</div>
 
   <div class="row g-4">
-    <div class="col-md-4 col-lg-4 col-xl-4" *ngFor="let product of products">
+    <div
+      class="col-md-4 col-lg-4 col-xl-4"
+      *ngFor="let product of products | filterPipe : filterText"
+    >
       <div class="rounded position-relative fruite-item">
         <div class="fruite-img">
           <img
@@ -26,7 +43,7 @@
           {{ product.categoryID }}
         </div>
         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-          <h4>{{ product.name }}</h4>
+          <h4>{{ product.name | uppercase }}</h4>
           <p>{{ product.description }}</p>
           <div class="d-flex justify-content-between flex-lg-wrap">
             <p class="text-dark fs-5 fw-bold mb-0">
@@ -43,29 +60,35 @@
       </div>
     </div>
   </div>
-
-  <!-- <table *ngIf="dataLoaded == true" class="table table-striped table-hover">
+</div>
+<div>
+  <table *ngIf="dataLoaded == true" class="table table-striped table-hover">
     <thead>
       <th>adı</th>
       <th>açıklama</th>
       <th>stok</th>
       <th>fiyat</th>
+      <th>kdvli fiyat</th>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products" class="table">
+      <tr
+        *ngFor="let product of products | filterPipe : filterText"
+        class="table"
+      >
         <td>{{ product.name }}</td>
-        <
+
         <td>{{ product.userId }}</td>
         <td>{{ product.productId }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.unitsInStock }}</td>
-        <td>{{ product.unitPrice }}</td>
+        <td>{{ product.unitPrice | currency }}</td>
+        <td>{{ product.unitPrice | vatAdded : 10 | currency }}</td>
         <td>{{ product.categoryID }}</td>
-        <td>{{ product.imageUrl }}</td>
       </tr>
     </tbody>
   </table>
-</div>
+
+  <!-- 
 <div *ngIf="dataLoaded == false" class="lds-ellipsis">
   <div></div>
   <div></div>

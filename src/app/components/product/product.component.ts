@@ -12,11 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductComponent {
   products: Product[] = [];
   dataLoaded = false;
+  filterText = '';
 
   constructor(
     private productService: ProductService,
     private activetedRoute: ActivatedRoute
   ) {}
+  //observable->asenkron döndürür bizdes subscribe olup senkron oluyoruz.
 
   ngOnInit(): void {
     this.activetedRoute.params.subscribe((params) => {
