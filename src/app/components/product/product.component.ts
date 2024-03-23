@@ -3,6 +3,8 @@ import { Product } from '../../models/product';
 
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +18,9 @@ export class ProductComponent {
 
   constructor(
     private productService: ProductService,
-    private activetedRoute: ActivatedRoute
+    private activetedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private cartService: CartService
   ) {}
   //observable->asenkron döndürür bizdes subscribe olup senkron oluyoruz.
 
@@ -46,5 +50,10 @@ export class ProductComponent {
         console.log('girdi');
         //senkron hale getiri burayı method dışına yapsak işe yaramaz
       });
+  }
+
+  addToCart(product: Product) {
+    this.toastrService.success('sepete eklendi', product.name);
+    this.cartService.addToCart(product);
   }
 }

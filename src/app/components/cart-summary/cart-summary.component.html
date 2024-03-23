@@ -1,0 +1,26 @@
+<li *ngIf="cardItems.length > 0" class="nav-item dropdown">
+  <a
+    class="nav-link dropdown-toggle text-white"
+    href="#"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Sepetiniz
+  </a>
+  <ul class="dropdown-menu">
+    <li *ngFor="let cardItem of cardItems">
+      <a class="dropdown-item"
+        >{{ cardItem.product.name }}
+        <span class="badge bg-primary">{{ cardItem.quantity }}</span
+        ><span
+          (click)="removeFromCart(cardItem.product)"
+          class="badge bg-danger"
+          >sil</span
+        >
+      </a>
+    </li>
+    <li><hr class="dropdown-divider" /></li>
+    <li><a class="dropdown-item">Sepete Git</a></li>
+  </ul>
+</li>
