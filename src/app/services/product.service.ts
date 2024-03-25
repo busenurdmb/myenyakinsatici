@@ -8,7 +8,7 @@ import { listResponseModel } from '../models/listResponsemodel';
   providedIn: 'root',
 })
 export class ProductService {
-  apiurl = 'http://localhost:5233/api/';
+  apiurl = 'http://localhost:27392/api/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -16,10 +16,17 @@ export class ProductService {
     let newPath = this.apiurl + 'Products/getall';
     return this.httpClient.get<listResponseModel<Product>>(newPath);
   }
+
   getProductsbycategory(
     categoryid: number
   ): Observable<listResponseModel<Product>> {
     let newPath = this.apiurl + 'Products/getbycategory/ ' + categoryid;
+
     return this.httpClient.get<listResponseModel<Product>>(newPath);
+  }
+
+  add(product: Product) {
+    console.log('3');
+    return this.httpClient.post(this.apiurl + 'Products/add', product);
   }
 }

@@ -1,6 +1,53 @@
 <!-- <div class="card">
   <div class="card-header text-bg-primary">Kategoriler</div> -->
-<ul class="list-group">
+<div class="col-lg-12">
+  <div class="input-group w-100 mx-auto d-flex">
+    <input
+      type="search"
+      class="form-control p-3"
+      placeholder="keywords"
+      aria-describedby="search-icon-1"
+    />
+    <span id="search-icon-1" class="input-group-text p-3"
+      ><i class="fa fa-search"></i
+    ></span>
+  </div>
+  <div class="mb-3">
+    <h4>Kategoriler</h4>
+    <ul class="list-unstyled fruite-categorie">
+      <li class="list-group-item">
+        <div
+          (click)="clearCurrentCategory()"
+          [class]="getAllCategoryClass()"
+          routerLink="/products"
+        >
+          <div class="d-flex justify-content-between fruite-name">
+            <span><i class="fas fa-apple-alt me-2"></i>Tüm ürünler</span>
+            <span>(3)</span>
+          </div>
+        </div>
+      </li>
+      <li *ngFor="let category of categories" class="list-group-item">
+        <div
+          (click)="setCurrentCategory(category)"
+          routerLink="/products/category/{{ category.categoryID }}"
+          [class]="getCurrentCategoryClass(category)"
+        >
+          <div class="d-flex justify-content-between fruite-name">
+            <span>
+              <i class="fas fa-apple-alt me-2"></i>
+              {{ category.categoryName }}</span
+            >
+
+            <span></span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- <ul class="list-group">
   <li
     (click)="clearCurrentCategory()"
     [class]="getAllCategoryClass()"
@@ -16,7 +63,7 @@
   >
     {{ category.categoryName }}
   </li>
-</ul>
+</ul> -->
 <!-- <table class="table active">
     <tbody>
       <tr

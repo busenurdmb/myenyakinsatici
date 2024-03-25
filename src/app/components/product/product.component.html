@@ -1,4 +1,4 @@
-<div
+<!-- <div
   *ngIf="dataLoaded == false"
   class="spinner-border text-primary text-center"
   role="status"
@@ -17,8 +17,29 @@
 </div>
 <div *ngIf="filterText" class="alert alert-primary">
   {{ filterText }} aradınız
+</div> -->
+<div class="col-xl-12">
+  <div
+    *ngIf="dataLoaded == false"
+    class="spinner-border text-primary text-center"
+    role="status"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="filterText">ürün ara</label>
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="arama yapınız"
+    />
+  </div>
+  <div *ngIf="filterText" class="alert alert-primary">
+    {{ filterText }} aradınız
+  </div>
 </div>
-
 <div class="card">
   <div class="card-header">ürünler</div>
 
@@ -58,9 +79,9 @@
               <button
                 (click)="addToCart(product)"
                 type="button"
-                class="btn btn-success border border-secondary rounded-pill px-3"
+                class="btn border border-secondary rounded-pill px-3 text-primary"
               >
-                <i class="bi bi-bag-plus"></i> Sepet
+                <i class="fa fa-shopping-bag me-2 text-primary"></i> Sepet
               </button>
             </div>
           </div>

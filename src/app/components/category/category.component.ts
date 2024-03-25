@@ -27,20 +27,21 @@ export class CategoryComponent {
 
   setCurrentCategory(category: Category) {
     this.currentCategory = category;
+    console.log('c compo');
   }
 
   getCurrentCategoryClass(category: Category) {
     if (category == this.currentCategory) {
-      return 'list-group-item active';
+      return 'text-secondary ';
     } else {
-      return 'list-group-item';
+      return 'text-primary ';
     }
   }
   getAllCategoryClass() {
     if (!this.currentCategory) {
-      return 'list-group-item active';
+      return 'text-secondary ';
     } else {
-      return 'list-group-item';
+      return 'text-primary ';
     }
   }
 
