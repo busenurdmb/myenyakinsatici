@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductAddComponent {
   productAddForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
@@ -43,10 +45,21 @@ export class ProductAddComponent {
       let productModel = Object.assign({}, this.productAddForm.value);
       console.log(productModel);
 
-      this.productService.add(productModel).subscribe((response) => {
-        console.log(response);
-        this.toastrService.success('Ürün eklendi', 'Başarılı');
-      });
+      this.productService.add(productModel).subscribe(
+        (response) => {
+          this.toastrService.success(response.message, 'Başarılı');
+        },
+        (responseError) => {
+          if (responseError.error.Errors.length > 0) {
+            for (let i = 0; i < responseError.error.Errors.length; i++) {
+              this.toastrService.error(
+                responseError.error.Errors[i].ErrorMessage,
+                'Doğrulama Hatası'
+              );
+            }
+          }
+        }
+      );
     } else {
       this.toastrService.error('Formunuz eksik veya hatalı', 'Dikkat');
     }
