@@ -1,0 +1,117 @@
+<div class="row g-4">
+  <div class="col-lg-12">
+    <div
+      *ngIf="dataLoaded == false"
+      class="spinner-border text-primary text-center"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 mb-3">
+        <label class="form-label" for="filterText">ürün ara</label>
+        <input
+          type="text"
+          [(ngModel)]="filterText"
+          class="form-control"
+          id="filterText"
+          placeholder="arama yapınız"
+        />
+      </div>
+      <div class="col-lg-2 mb-3">
+        <td>
+          <button
+            click="routerLink"
+            routerLink="/products/add/"
+            class="btn btn-info btn btn-md rounded-circle border mt-4"
+          >
+            <span class="icon me-2 text-white">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span class="text-white">Ürün Ekle </span>
+          </button>
+        </td>
+      </div>
+    </div>
+    <div *ngIf="filterText" class="alert alert-primary">
+      {{ filterText }} aradınız
+    </div>
+  </div>
+
+  <table *ngIf="dataLoaded == true" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Resim</th>
+        <th scope="col">isim</th>
+        <th scope="col">Açıklama</th>
+        <th scope="col">Stok</th>
+        <th scope="col">Fiyat</th>
+        <th scope="col">Kdvli fiyat</th>
+        <th scope="col">Güncelle</th>
+        <th scope="col">Sil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let product of products | filterPipe : filterText"
+        class="table"
+      >
+        <th scope="row">
+          <div class="d-flex align-items-center">
+            <img
+              src="{{ product.imageUrl }}"
+              class="img-fluid me-5 rounded-circle"
+              style="width: 80px; height: 80px"
+              alt=""
+            />
+          </div>
+        </th>
+        <td>
+          <p class="mb-0 mt-4">{{ product.name }}</p>
+        </td>
+        <td>
+          <p class="mb-0 mt-4">{{ product.description | slice : 0 : 15 }}</p>
+        </td>
+        <td>
+          <p class="mb-0 mt-4">{{ product.unitsInStock }}</p>
+        </td>
+        <td>
+          <p class="mb-0 mt-4">{{ product.unitPrice | currency }}</p>
+        </td>
+        <td>
+          <p class="mb-0 mt-4">
+            {{ product.unitPrice | vatAdded : 10 | currency }}
+          </p>
+        </td>
+        <!-- <td>{{ product.categoryID }}</td> -->
+        <td>
+          <button
+            class="btn btn-primary mt-4"
+            click="routerLink"
+            routerLink="/products/update/{{ product.productId }}"
+          >
+            <span class="icon text-white">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span class="text-white">Güncelle</span>
+          </button>
+        </td>
+        <td>
+          <button
+            (click)="openConfirmationModal(product)"
+            class="btn btn-danger btn btn-md border mt-4"
+          >
+            <span class="icon text-white">
+              <i class="fas fa-trash"></i>
+            </span>
+            <span class="text">Sil</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-product-delete
+  [selectedProduct]="selectedProduct"
+  *ngIf="selectedProduct"
+></app-product-delete>

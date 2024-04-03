@@ -25,8 +25,10 @@ export class AuthService {
   isAuthenticated() {
     if (typeof window !== 'undefined') {
       if (localStorage.getItem('token')) {
+        console.log('token aldım');
         return true;
       } else {
+        console.log('token almadım');
         return false;
       }
     }

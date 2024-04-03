@@ -1,0 +1,40 @@
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngClass]="{ 'd-block': selectedProduct }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ürün Silme Onayı</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeConfirmationModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Emin misiniz? Bu işlem geri alınamaz.</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeConfirmationModal()"
+        >
+          İptal
+        </button>
+        <a
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteProduct()"
+          routerLink="/products/list"
+        >
+          Sil
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

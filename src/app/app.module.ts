@@ -20,6 +20,10 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ProductUpdateComponent } from './components/product-update/product-update.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
+import { SinglepageheaderComponent } from './components/singlepageheader/singlepageheader.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ProductAddComponent,
     FooterComponent,
     LoginComponent,
+    ProductUpdateComponent,
+    ProductListComponent,
+    ProductDeleteComponent,
+    SinglepageheaderComponent,
   ],
   imports: [
     BrowserModule,

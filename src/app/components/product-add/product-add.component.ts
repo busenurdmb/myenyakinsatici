@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -20,7 +21,8 @@ export class ProductAddComponent {
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class ProductAddComponent {
       this.productService.add(productModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
+          this.router.navigate(['/products/list']);
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {

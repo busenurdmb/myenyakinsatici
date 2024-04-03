@@ -35,6 +35,12 @@ export class LoginGuard implements CanActivate {
       this.toastrService.info('Sisteme giriş yapmalısınız', '', {
         progressBar: true,
       });
+
+      //  Toastr'ı 3 saniye sonra kapat
+      setTimeout(() => {
+        this.toastrService.clear();
+      }, 5000);
+
       return false;
     }
   }

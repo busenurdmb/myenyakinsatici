@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,8 @@ export class LoginComponent implements OnInit {
         (response) => {
           this.toastService.info(response.message);
           localStorage.setItem('token', response.data.token);
+
+          this.router.navigate(['/products/list']);
         },
         (responseError) => {
           this.toastService.error(responseError.error);
