@@ -9,6 +9,9 @@ import {
 import { ProductService } from '../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { User } from '../../models/User';
+import { UserService } from '../../services/user.service';
+import { __await } from 'tslib';
 
 @Component({
   selector: 'app-product-add',
@@ -17,15 +20,17 @@ import { Router } from '@angular/router';
 })
 export class ProductAddComponent {
   productAddForm: FormGroup;
-
+  user: User;
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
+    private userService: UserService,
     private toastrService: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.getUserInfo();
     this.createProductAddForm();
   }
 
@@ -65,6 +70,28 @@ export class ProductAddComponent {
       );
     } else {
       this.toastrService.error('Formunuz eksik veya hatalı', 'Dikkat');
+    }
+  }
+  getUserInfo() {
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem('token');
+      const userEmail = this.userService.getUserEmailFromToken(token);
+      if (userEmail) {
+        console.log(userEmail);
+        this.userService.getByMail(userEmail).subscribe(
+          (user: User) => {
+            this.user = user;
+            // Kullanıcı bilgisi alındıktan sonra, userId alanını doldur
+            this.productAddForm.get('userId').setValue(user.userId);
+            console.log(user);
+          },
+          (error) => {
+            this.toastrService.error('Kullanıcı bilgileri alınamadı.');
+          }
+        );
+      } else {
+        this.toastrService.error('Kullanıcı email bilgisi bulunamadı.');
+      }
     }
   }
 }

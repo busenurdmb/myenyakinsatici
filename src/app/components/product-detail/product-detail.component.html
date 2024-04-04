@@ -1,0 +1,42 @@
+<div class="row g-4" *ngIf="products && categories">
+  <div class="col-lg-6">
+    <div class="border rounded">
+      <!-- <a href="#">
+        <img
+          src="{{ products.imageUrl }}"
+          alt="Image"
+          style="height: 500; width: 5000"
+        /> -->
+      <a href="#">
+        <img
+          style="height: 300; width: 300"
+          src="{{ products.imageUrl }}"
+          alt="Image"
+          class="form-control"
+        />
+      </a>
+      <!-- </a> -->
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <h4 class="fw-bold mb-3">{{ products.name }}</h4>
+    <p class="mb-3">Category: {{ categories.categoryName }}</p>
+    <h5 class="fw-bold mb-3">{{ products.unitPrice }} $</h5>
+    <div class="d-flex mb-4">
+      <i class="fa fa-star text-secondary"></i>
+      <i class="fa fa-star text-secondary"></i>
+      <i class="fa fa-star text-secondary"></i>
+      <i class="fa fa-star text-secondary"></i>
+      <i class="fa fa-star"></i>
+    </div>
+    <p class="mb-4">
+      {{ products.description }}
+    </p>
+
+    <a
+      (click)="addToCart(products)"
+      class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
+      ><i class="fa fa-shopping-bag me-2 text-primary"></i> Ürünü Sepete Ekle</a
+    >
+  </div>
+</div>

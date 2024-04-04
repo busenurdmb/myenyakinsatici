@@ -48,13 +48,13 @@
               class="text-white bg-secondary px-3 py-1 rounded position-absolute"
               style="top: 10px; left: 10px"
             >
-              {{ product.categoryID }}
+              <a routerLink="/products/detail/{{ product.productId }}">Detay</a>
             </div>
             <div
               class="p-4 border border-secondary border-top-0 rounded-bottom"
             >
               <h4>{{ product.name | uppercase }}</h4>
-              <p>{{ product.description }}</p>
+              <p>{{ product.description | slice : 0 : 25 }}</p>
               <div class="d-flex justify-content-between flex-lg-wrap">
                 <p class="text-dark fs-5 fw-bold mb-0">
                   {{ product.unitPrice }}/ kg

@@ -7,11 +7,9 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-12 col-lg-12">
-            <div class="form-item">
-              <label class="form-label my-3" class="form-label my-3"
-                >kullanıcı Id<sup>*</sup></label
-              >
+            <div class="form-item" hidden>
               <input
+                hidden
                 type="number"
                 id="userId"
                 class="form-control"
@@ -86,9 +84,20 @@
                 formControlName="imageUrl"
               />
             </div>
+            <label class="form-label my-3" for="exampleFormControlFile1"
+              >resim url</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="imageUrl"
+              formControlName="imageUrl"
+            />
+            <img [src]="productAddForm.get('imageUrl').value" />
           </div>
         </div>
       </div>
+
       <div class="card-action">
         <button class="btn btn-fill btn-success" (click)="add()">
           Ürünü Ekle

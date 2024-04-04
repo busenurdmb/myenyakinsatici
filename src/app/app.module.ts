@@ -24,6 +24,8 @@ import { ProductUpdateComponent } from './components/product-update/product-upda
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
 import { SinglepageheaderComponent } from './components/singlepageheader/singlepageheader.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { SinglepageheaderComponent } from './components/singlepageheader/singlep
     ProductListComponent,
     ProductDeleteComponent,
     SinglepageheaderComponent,
+    ProfileComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,

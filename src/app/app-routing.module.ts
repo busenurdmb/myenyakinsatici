@@ -7,6 +7,7 @@ import { LoginGuard } from './guards/login.guard';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: ProductComponent },
@@ -31,6 +32,10 @@ const routes: Routes = [
     path: 'products/update/:productId',
     component: ProductUpdateComponent,
     canActivate: [LoginGuard],
+  },
+  {
+    path: 'products/detail/:productId',
+    component: ProductDetailComponent,
   },
   { path: 'login', component: LoginComponent },
 ];

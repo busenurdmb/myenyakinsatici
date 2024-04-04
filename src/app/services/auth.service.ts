@@ -28,7 +28,6 @@ export class AuthService {
         console.log('token aldım');
         return true;
       } else {
-        console.log('token almadım');
         return false;
       }
     }
